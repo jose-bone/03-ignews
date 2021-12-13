@@ -1,6 +1,9 @@
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+
 import { SubscribeButton } from "../components/SubscribeButton/Index";
+import { stripe } from "../services/stripe";
 
 import styles from "./home.module.scss";
 
@@ -54,5 +57,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       product,
     },
+    revalidate: 60 * 60 * 24,
   };
 };
