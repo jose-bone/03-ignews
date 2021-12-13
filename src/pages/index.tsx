@@ -1,6 +1,5 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 import { SubscribeButton } from "../components/SubscribeButton/Index";
 import { stripe } from "../services/stripe";
