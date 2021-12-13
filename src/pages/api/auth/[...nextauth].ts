@@ -8,4 +8,20 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
+  jwt: {
+    secret: process.env.SIGNING_KEY,
+  },
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      const { email } = user;
+      try {
+        await fauna.query(q.Create(q.Collection("users"), { data: { email } }));
+
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
+  },
 });
