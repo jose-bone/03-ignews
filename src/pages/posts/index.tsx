@@ -42,3 +42,21 @@ export default function Posts() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const prismic = getPrismicClient();
+
+  const response = await prismic.query(
+    [Prismic.predicates.at("document.type", "post")],
+    {
+      fetch: ["post.title", "post.content"],
+      pageSize: 100,
+    }
+  );
+
+  console.log(JSON.stringify(response, null, 2));
+
+  return {
+    props: {},
+  };
+};
