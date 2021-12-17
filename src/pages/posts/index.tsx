@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import Prismic from "@prismicio/client";
 import { RichText } from "prismic-dom";
 
@@ -37,7 +38,6 @@ export default function Posts({ posts }: PostsProps) {
             </Link>
           ))}
         </div>
-            </Link>
       </main>
     </>
   );
