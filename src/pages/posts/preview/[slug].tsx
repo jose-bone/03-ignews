@@ -57,7 +57,7 @@ export default function PostPreview({ post }: PreviewProps) {
   );
 }
 
-export const getStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
     fallback: "blocking",
@@ -76,12 +76,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     title: RichText.asText(response.data.title),
     content: RichText.asHtml(response.data.content.splice(3, 3)),
     updatedAt: new Date(response.last_publication_date).toLocaleDateString(
-      "pt-pt",
+      "pt-BR",
       { day: "2-digit", month: "long", year: "numeric" }
     ),
   };
 
   return {
     props: { post },
+    redirect: 60 * 30, // 30 minutes
   };
 };
