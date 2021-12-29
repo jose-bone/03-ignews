@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Header } from ".";
+import { Header } from "./Index";
 
 jest.mock("next/router", () => {
   return {
@@ -11,7 +11,7 @@ jest.mock("next/router", () => {
   };
 });
 
-jest.mock("next-auth/client", () => {
+jest.mock("next-auth/react", () => {
   return {
     useSession() {
       return [null, false];

@@ -4,7 +4,7 @@ import { mocked } from "ts-jest/utils";
 import Home, { getStaticProps } from "../../pages";
 
 jest.mock("next/router");
-jest.mock("next-auth/client", () => {
+jest.mock("next-auth/react", () => {
   return {
     useSession() {
       return [null, false];
