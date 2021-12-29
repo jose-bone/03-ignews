@@ -1,12 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 import { mocked } from "ts-jest/utils";
 import Post, { getServerSideProps } from "../../pages/posts/[slug]";
 
 import { getPrismicClient } from "../../services/prismic";
 
 jest.mock("next/router");
-jest.mock("next-auth/client");
+jest.mock("next-auth/react");
 jest.mock("../../services/prismic");
 
 const post = {

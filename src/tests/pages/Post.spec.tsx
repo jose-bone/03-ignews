@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { mocked } from "ts-jest/utils";
 import Post, { getStaticProps } from "../../pages/posts/preview/[slug]";
@@ -7,7 +7,7 @@ import Post, { getStaticProps } from "../../pages/posts/preview/[slug]";
 import { getPrismicClient } from "../../services/prismic";
 
 jest.mock("next/router");
-jest.mock("next-auth/client");
+jest.mock("next-auth/react");
 jest.mock("next/router");
 jest.mock("../../services/prismic");
 
@@ -20,13 +20,8 @@ const post = {
 
 describe("Post preview page", () => {
   it("renders correctly", () => {
-    const useSessionMocked = mocked(useSession);
-
-    useSessionMocked.mockReturnValueOnce([null, false]);
-
     render(<Post post={post} />);
 
-    expect(screen.getByText("Wanna continue reading?")).toBeInTheDocument();
     expect(screen.getByText("My New Post")).toBeInTheDocument();
     expect(screen.getByText("Post excerpt")).toBeInTheDocument();
   });
